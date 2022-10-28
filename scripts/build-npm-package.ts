@@ -40,22 +40,26 @@ if (process.env.GITHUB_RUN_NUMBER === undefined) {
 // iPhone SDKs that we get from xcrun...
 
 // Check that Android Skia libs are built
-["armeabi-v7a", "arm64-v8a", "x86", "x86_64"].forEach((cpu) => {
-  [
-    "libskia.a",
-    "libskshaper.a",
-    "libsvg.a",
-    "libskottie.a",
-    "libsksg.a",
-  ].forEach((target) => {
-    const path = `./package/libs/android/${cpu}/${target}`;
-    checkFileExists(
-      path,
-      `Skia Android ${path}`,
-      "Have you built the Skia Android binaries? Run yarn run build."
-    );
+if (process.env.ANDROID != undefined && process.env.ANDROID == "false") {
+  console.log("Don't need Android");
+} else {
+  ["armeabi-v7a", "arm64-v8a", "x86", "x86_64"].forEach((cpu) => {
+    [
+      "libskia.a",
+      "libskshaper.a",
+      "libsvg.a",
+      "libskottie.a",
+      "libsksg.a",
+    ].forEach((target) => {
+      const path = `./package/libs/android/${cpu}/${target}`;
+      checkFileExists(
+        path,
+        `Skia Android ${path}`,
+        "Have you built the Skia Android binaries? Run yarn run build."
+      );
+    });
   });
-});
+}
 
 // Check that iOS Skia frameworks are built
 [
