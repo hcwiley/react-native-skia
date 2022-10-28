@@ -148,6 +148,17 @@
       nextTouch.x = position.x;
       nextTouch.y = position.y;
       nextTouch.force = [touch force];    
+      switch (touch.type) {
+        case UITouchTypePencil:
+          nextTouch.toolType = RNSkia::RNSkTouchInfo::ToolType::Pencil;
+          break;
+        case UITouchTypeIndirect:
+          nextTouch.toolType = RNSkia::RNSkTouchInfo::ToolType::Indirect;
+          break;
+        default:
+          nextTouch.toolType = RNSkia::RNSkTouchInfo::ToolType::Touch;
+          break;
+      }
       nextTouch.id = [touch hash];
       auto phase = [touch phase];
       switch(phase) {
