@@ -133,10 +133,12 @@ enum RNSkDrawingMode { Default, Continuous };
 
 using RNSkTouchInfo = struct {
   enum TouchType { Start, Active, End, Cancelled };
+  enum ToolType { Touch, Pencil, Indirect };
   double x;
   double y;
   double force;
   TouchType type;
+  ToolType toolType;
   size_t id;
   long timestamp;
 };

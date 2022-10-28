@@ -33,6 +33,7 @@ public:
         touchObj.setProperty(runtime, "y", t.y);
         touchObj.setProperty(runtime, "force", t.force);
         touchObj.setProperty(runtime, "type", static_cast<double>(t.type));
+        touchObj.setProperty(runtime, "toolType", static_cast<double>(t.toolType));
         touchObj.setProperty(runtime, "timestamp",
                              static_cast<double>(t.timestamp / 1000.0));
         touchObj.setProperty(runtime, "id", static_cast<double>(t.id));

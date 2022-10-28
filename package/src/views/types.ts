@@ -16,12 +16,18 @@ export enum TouchType {
   End,
   Cancelled,
 }
+export enum ToolType {
+  Touch,
+  Pencil,
+  Indirect,
+}
 
 export interface TouchInfo {
   x: number;
   y: number;
   force: number;
   type: TouchType;
+  toolType?: ToolType;
   id: number;
   timestamp: number;
 }
